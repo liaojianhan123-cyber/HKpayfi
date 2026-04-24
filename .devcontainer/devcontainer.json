@@ -1,0 +1,12 @@
+{
+  "name": "HKPayFi",
+  "image": "ghcr.io/foundry-rs/foundry:latest",
+  "postCreateCommand": "forge install && forge build",
+  "customizations": {
+    "vscode": {
+      "extensions": [
+        "JuanBlanco.solidity"
+      ]
+    }
+  }
+}
