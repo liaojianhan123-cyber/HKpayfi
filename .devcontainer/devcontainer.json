@@ -1,7 +1,9 @@
 {
   "name": "HKPayFi",
-  "image": "ghcr.io/foundry-rs/foundry:latest",
-  "postCreateCommand": "forge install && forge build",
+  "image": "mcr.microsoft.com/devcontainers/javascript-node:20",
+
+  "postCreateCommand": "curl -L https://foundry.paradigm.xyz | bash && ~/.foundry/bin/foundryup && echo 'export PATH=$HOME/.foundry/bin:$PATH' >> ~/.bashrc && forge install && forge build",
+
   "customizations": {
     "vscode": {
       "extensions": [
