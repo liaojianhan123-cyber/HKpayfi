@@ -286,8 +286,7 @@ contract SeedHKPayFi is Script {
         cfg.activeDrawdownAmount = vm.envOr("SEED_ACTIVE_DRAWDOWN_AMOUNT", uint256(60_000e6));
         cfg.activeReceivableDuration = vm.envOr("SEED_ACTIVE_RECEIVABLE_DURATION", uint256(60 days));
 
-        cfg.approvedReceivableFaceAmount =
-            vm.envOr("SEED_APPROVED_RECEIVABLE_FACE_AMOUNT", uint256(80_000e6));
+        cfg.approvedReceivableFaceAmount = vm.envOr("SEED_APPROVED_RECEIVABLE_FACE_AMOUNT", uint256(80_000e6));
         cfg.approvedReceivableDuration = vm.envOr("SEED_APPROVED_RECEIVABLE_DURATION", uint256(75 days));
 
         cfg.repaidReceivableFaceAmount = vm.envOr("SEED_REPAID_RECEIVABLE_FACE_AMOUNT", uint256(40_000e6));
