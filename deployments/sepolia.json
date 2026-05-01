@@ -1,0 +1,18 @@
+{
+  "chainId": 11155111,
+  "creditFacility": "0x12A0B1E30d28Aa0A57ac1064321b4F9b12b40F48",
+  "deployer": "0x4A779fA7d5eA106f1aDFB8369e65fCAA465ca7Fd",
+  "evaluationAgent": "0xC795C562d5e21b1F52FFa19b3F34d7bDb5A27c04",
+  "evaluator": "0x4A779fA7d5eA106f1aDFB8369e65fCAA465ca7Fd",
+  "guardian": "0x4A779fA7d5eA106f1aDFB8369e65fCAA465ca7Fd",
+  "hkPayToken": "0xfA0933Aa0073Ba4230080C819Bc7e42e14Fca7c1",
+  "liquidityPool": "0x73489286d465bAcdc78388A80BDf3a5A68f3560B",
+  "mockUsdc": true,
+  "network": "sepolia",
+  "protocolAdmin": "0x4A779fA7d5eA106f1aDFB8369e65fCAA465ca7Fd",
+  "protocolConfig": "0x1a5501aD51a3D608D4eDbed4de292Eb4592CA018",
+  "receivableNFT": "0xd38319F51B5CfF79B5dB424aeAc4902571AA67e2",
+  "timestamp": 1777596144,
+  "treasury": "0x4A779fA7d5eA106f1aDFB8369e65fCAA465ca7Fd",
+  "usdc": "0x01eaaA0277501D16b7ae3CfBd3Bd6a7f4a8815Cc"
+}

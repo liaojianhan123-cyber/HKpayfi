@@ -1,0 +1,207 @@
+[
+  {
+    "inputs": [
+      { "internalType": "address", "name": "_config", "type": "address" }
+    ],
+    "stateMutability": "nonpayable",
+    "type": "constructor"
+  },
+
+  {
+    "anonymous": false,
+    "inputs": [
+      { "indexed": true, "internalType": "uint256", "name": "tokenId", "type": "uint256" },
+      { "indexed": true, "internalType": "address", "name": "borrower", "type": "address" },
+      { "indexed": false, "internalType": "uint256", "name": "faceAmount", "type": "uint256" },
+      { "indexed": false, "internalType": "uint256", "name": "dueDate", "type": "uint256" }
+    ],
+    "name": "ReceivableMinted",
+    "type": "event"
+  },
+  {
+    "anonymous": false,
+    "inputs": [
+      { "indexed": true, "internalType": "uint256", "name": "tokenId", "type": "uint256" }
+    ],
+    "name": "ReceivableApproved",
+    "type": "event"
+  },
+  {
+    "anonymous": false,
+    "inputs": [
+      { "indexed": true, "internalType": "uint256", "name": "tokenId", "type": "uint256" }
+    ],
+    "name": "ReceivableFinanced",
+    "type": "event"
+  },
+  {
+    "anonymous": false,
+    "inputs": [
+      { "indexed": true, "internalType": "uint256", "name": "tokenId", "type": "uint256" }
+    ],
+    "name": "ReceivablePaid",
+    "type": "event"
+  },
+  {
+    "anonymous": false,
+    "inputs": [
+      { "indexed": true, "internalType": "uint256", "name": "tokenId", "type": "uint256" }
+    ],
+    "name": "ReceivableDefaulted",
+    "type": "event"
+  },
+
+  {
+    "inputs": [],
+    "name": "config",
+    "outputs": [
+      { "internalType": "contract ProtocolConfig", "name": "", "type": "address" }
+    ],
+    "stateMutability": "view",
+    "type": "function"
+  },
+  {
+    "inputs": [],
+    "name": "EVALUATOR_ROLE",
+    "outputs": [
+      { "internalType": "bytes32", "name": "", "type": "bytes32" }
+    ],
+    "stateMutability": "view",
+    "type": "function"
+  },
+  {
+    "inputs": [],
+    "name": "FACILITY_ROLE",
+    "outputs": [
+      { "internalType": "bytes32", "name": "", "type": "bytes32" }
+    ],
+    "stateMutability": "view",
+    "type": "function"
+  },
+
+  {
+    "inputs": [
+      { "internalType": "address", "name": "_payer", "type": "address" },
+      { "internalType": "uint256", "name": "_faceAmount", "type": "uint256" },
+      { "internalType": "uint256", "name": "_dueDate", "type": "uint256" },
+      { "internalType": "string", "name": "_invoiceId", "type": "string" }
+    ],
+    "name": "mint",
+    "outputs": [
+      { "internalType": "uint256", "name": "tokenId", "type": "uint256" }
+    ],
+    "stateMutability": "nonpayable",
+    "type": "function"
+  },
+
+  {
+    "inputs": [
+      { "internalType": "uint256", "name": "_tokenId", "type": "uint256" }
+    ],
+    "name": "approve",
+    "outputs": [],
+    "stateMutability": "nonpayable",
+    "type": "function"
+  },
+  {
+    "inputs": [
+      { "internalType": "uint256", "name": "_tokenId", "type": "uint256" }
+    ],
+    "name": "markFinanced",
+    "outputs": [],
+    "stateMutability": "nonpayable",
+    "type": "function"
+  },
+  {
+    "inputs": [
+      { "internalType": "uint256", "name": "_tokenId", "type": "uint256" }
+    ],
+    "name": "markPaid",
+    "outputs": [],
+    "stateMutability": "nonpayable",
+    "type": "function"
+  },
+  {
+    "inputs": [
+      { "internalType": "uint256", "name": "_tokenId", "type": "uint256" }
+    ],
+    "name": "markDefaulted",
+    "outputs": [],
+    "stateMutability": "nonpayable",
+    "type": "function"
+  },
+
+  {
+    "inputs": [
+      { "internalType": "uint256", "name": "_tokenId", "type": "uint256" }
+    ],
+    "name": "getReceivable",
+    "outputs": [
+      {
+        "components": [
+          { "internalType": "address", "name": "borrower", "type": "address" },
+          { "internalType": "address", "name": "payer", "type": "address" },
+          { "internalType": "uint256", "name": "faceAmount", "type": "uint256" },
+          { "internalType": "uint256", "name": "dueDate", "type": "uint256" },
+          { "internalType": "uint256", "name": "createdAt", "type": "uint256" },
+          { "internalType": "uint8", "name": "state", "type": "uint8" },
+          { "internalType": "string", "name": "invoiceId", "type": "string" }
+        ],
+        "internalType": "struct ReceivableNFT.ReceivableInfo",
+        "name": "",
+        "type": "tuple"
+      }
+    ],
+    "stateMutability": "view",
+    "type": "function"
+  },
+
+  {
+    "inputs": [],
+    "name": "DEFAULT_ADMIN_ROLE",
+    "outputs": [{ "internalType": "bytes32", "name": "", "type": "bytes32" }],
+    "stateMutability": "view",
+    "type": "function"
+  },
+  {
+    "inputs": [{ "internalType": "bytes32", "name": "role", "type": "bytes32" }],
+    "name": "getRoleAdmin",
+    "outputs": [{ "internalType": "bytes32", "name": "", "type": "bytes32" }],
+    "stateMutability": "view",
+    "type": "function"
+  },
+  {
+    "inputs": [
+      { "internalType": "bytes32", "name": "role", "type": "bytes32" },
+      { "internalType": "address", "name": "account", "type": "address" }
+    ],
+    "name": "hasRole",
+    "outputs": [{ "internalType": "bool", "name": "", "type": "bool" }],
+    "stateMutability": "view",
+    "type": "function"
+  },
+
+  {
+    "inputs": [{ "internalType": "uint256", "name": "", "type": "uint256" }],
+    "name": "receivables",
+    "outputs": [
+      { "internalType": "address", "name": "borrower", "type": "address" },
+      { "internalType": "address", "name": "payer", "type": "address" },
+      { "internalType": "uint256", "name": "faceAmount", "type": "uint256" },
+      { "internalType": "uint256", "name": "dueDate", "type": "uint256" },
+      { "internalType": "uint256", "name": "createdAt", "type": "uint256" },
+      { "internalType": "uint8", "name": "state", "type": "uint8" },
+      { "internalType": "string", "name": "invoiceId", "type": "string" }
+    ],
+    "stateMutability": "view",
+    "type": "function"
+  },
+
+  {
+    "inputs": [{ "internalType": "bytes4", "name": "interfaceId", "type": "bytes4" }],
+    "name": "supportsInterface",
+    "outputs": [{ "internalType": "bool", "name": "", "type": "bool" }],
+    "stateMutability": "view",
+    "type": "function"
+  }
+]
