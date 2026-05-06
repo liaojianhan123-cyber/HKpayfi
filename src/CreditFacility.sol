@@ -10,6 +10,17 @@ import "./ReceivableNFT.sol";
 import "./LiquidityPool.sol";
 import "./EvaluationAgent.sol";
 
+/// @notice Chainlink Automation interface — kept inline so we don't pull
+///         the entire Chainlink contracts package as a dependency.
+interface AutomationCompatibleInterface {
+    function checkUpkeep(bytes calldata checkData)
+        external
+        view
+        returns (bool upkeepNeeded, bytes memory performData);
+
+    function performUpkeep(bytes calldata performData) external;
+}
+
 /// @title CreditFacility
 /// @notice Core lending engine — manages credit lines backed by receivable NFTs.
 ///
@@ -27,11 +38,16 @@ import "./EvaluationAgent.sol";
 ///     1. Seller stake (first loss)
 ///     2. LP pool (residual loss, socialized across all LPs)
 
-contract CreditFacility is AccessControl, ReentrancyGuard {
+contract CreditFacility is AccessControl, ReentrancyGuard, AutomationCompatibleInterface {
     using SafeERC20 for IERC20;
 
     /// @notice Penalty interest multiplier for overdue period (1.5x = 15000 out of 10000)
     uint256 private constant PENALTY_RATE_MULTIPLIER = 15000;
+
+    /// @notice Maximum number of credit lines processed per Chainlink Automation upkeep.
+    ///         Caps gas usage of performUpkeep — Chainlink will run multiple upkeeps
+    ///         back-to-back if more than this number are defaultable simultaneously.
+    uint256 public constant MAX_AUTOMATION_BATCH = 5;
 
     enum CreditState {
         Pending,
@@ -290,6 +306,12 @@ contract CreditFacility is AccessControl, ReentrancyGuard {
     /// @dev Grace period is dynamic: token holders get more, and token holders with good
     ///      credit get even more. Non-holders use the protocol's base grace period.
     function triggerDefault(uint256 _creditLineId) external nonReentrant {
+        _triggerDefault(_creditLineId);
+    }
+
+    /// @dev Internal default-trigger logic — shared by manual `triggerDefault` and
+    ///      Chainlink Automation `performUpkeep`. Reverts if not eligible.
+    function _triggerDefault(uint256 _creditLineId) internal {
         CreditLine storage cl = creditLines[_creditLineId];
         require(cl.state == CreditState.Active, "Not active");
         require(block.timestamp > cl.dueDate + _effectiveGracePeriod(cl), "Grace period not elapsed");
@@ -315,6 +337,71 @@ contract CreditFacility is AccessControl, ReentrancyGuard {
         evaluationAgent.recordRepayment(cl.borrower, false);
 
         emit CreditLineDefaulted(_creditLineId, lossAmount);
+    }
+
+    // --------------------------------------------------------------------
+    // Chainlink Automation
+    // --------------------------------------------------------------------
+    //
+    // Off-chain Chainlink nodes call `checkUpkeep` periodically (free / no gas).
+    // If it returns `(true, performData)`, they submit `performUpkeep` on-chain.
+    // This makes default detection fully automatic — no manual triggering needed.
+    //
+    // Both functions are gas-bounded: scan and execution are capped at
+    // `MAX_AUTOMATION_BATCH` per call. If more credit lines need defaulting, the
+    // Chainlink registry simply calls performUpkeep again on the next block.
+
+    /// @notice Off-chain scan for defaultable credit lines.
+    /// @dev Called view-only by Chainlink off-chain workers. Returns IDs of
+    ///      credit lines whose grace period has elapsed (up to MAX_AUTOMATION_BATCH).
+    /// @param /* checkData */ Unused. Reserved for future filtering (e.g., scan offset).
+    /// @return upkeepNeeded True if at least one defaultable credit line was found.
+    /// @return performData ABI-encoded `uint256[]` of credit line IDs to default.
+    function checkUpkeep(bytes calldata /* checkData */ )
+        external
+        view
+        override
+        returns (bool upkeepNeeded, bytes memory performData)
+    {
+        uint256 total = _nextCreditLineId;
+        uint256[] memory candidates = new uint256[](MAX_AUTOMATION_BATCH);
+        uint256 found;
+
+        for (uint256 i = 0; i < total && found < MAX_AUTOMATION_BATCH; i++) {
+            CreditLine storage cl = creditLines[i];
+            if (cl.state != CreditState.Active) continue;
+            if (block.timestamp <= cl.dueDate + _effectiveGracePeriod(cl)) continue;
+            candidates[found++] = i;
+        }
+
+        if (found == 0) return (false, "");
+
+        // Trim array down to actual size
+        uint256[] memory ids = new uint256[](found);
+        for (uint256 j = 0; j < found; j++) {
+            ids[j] = candidates[j];
+        }
+        return (true, abi.encode(ids));
+    }
+
+    /// @notice On-chain default trigger — called by Chainlink keeper (or anyone).
+    /// @dev Permissionless: anyone can call this. Re-validates each ID is still
+    ///      defaultable (state could have changed between checkUpkeep and performUpkeep
+    ///      e.g., borrower repaid in the same block). Non-defaultable IDs are silently
+    ///      skipped so one stale ID doesn't revert the whole batch.
+    /// @param performData ABI-encoded `uint256[]` of credit line IDs to default.
+    function performUpkeep(bytes calldata performData) external override nonReentrant {
+        uint256[] memory ids = abi.decode(performData, (uint256[]));
+        require(ids.length <= MAX_AUTOMATION_BATCH, "Batch too large");
+
+        for (uint256 i = 0; i < ids.length; i++) {
+            uint256 id = ids[i];
+            CreditLine storage cl = creditLines[id];
+            // Defensive re-check — skip silently if state changed
+            if (cl.state != CreditState.Active) continue;
+            if (block.timestamp <= cl.dueDate + _effectiveGracePeriod(cl)) continue;
+            _triggerDefault(id);
+        }
     }
 
     /// @notice Calculate accrued interest.
