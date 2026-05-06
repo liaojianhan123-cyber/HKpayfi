@@ -13,10 +13,7 @@ import "./EvaluationAgent.sol";
 /// @notice Chainlink Automation interface — kept inline so we don't pull
 ///         the entire Chainlink contracts package as a dependency.
 interface AutomationCompatibleInterface {
-    function checkUpkeep(bytes calldata checkData)
-        external
-        view
-        returns (bool upkeepNeeded, bytes memory performData);
+    function checkUpkeep(bytes calldata checkData) external view returns (bool upkeepNeeded, bytes memory performData);
 
     function performUpkeep(bytes calldata performData) external;
 }
@@ -357,7 +354,9 @@ contract CreditFacility is AccessControl, ReentrancyGuard, AutomationCompatibleI
     /// @param /* checkData */ Unused. Reserved for future filtering (e.g., scan offset).
     /// @return upkeepNeeded True if at least one defaultable credit line was found.
     /// @return performData ABI-encoded `uint256[]` of credit line IDs to default.
-    function checkUpkeep(bytes calldata /* checkData */ )
+    function checkUpkeep(
+        bytes calldata /* checkData */
+    )
         external
         view
         override
