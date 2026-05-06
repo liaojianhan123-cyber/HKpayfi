@@ -2,11 +2,14 @@
 
 import { useState } from "react";
 import { useReceivableNFT } from "@/hooks/useReceivableNFT";
-import useWallet from "@/hooks/useWallet";
 
-export default function MintReceivable() {
+type WalletProps = {
+  account: string | null;
+  connectWallet: () => Promise<void>;
+};
+export default function MintReceivable({wallet,}: {wallet: WalletProps;}) {
   const { mintReceivable } = useReceivableNFT();
-  const { account, connectWallet } = useWallet();
+  const { account, connectWallet } = wallet;
 
   const [payer, setPayer] = useState("");
   const [amount, setAmount] = useState("");

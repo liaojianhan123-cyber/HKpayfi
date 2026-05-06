@@ -1,7 +1,11 @@
 "use client";
 import MintReceivable from "@/components/forms/MintReceivable";
+import ReceivableLifecycleTable from "@/components/tables/ReceivableLifecycleTable";
+import useWallet from "@/hooks/useWallet";
 
 export default function SellerDashboard() {
+  const wallet = useWallet();
+
   return (
     <div className="min-h-screen bg-gray-100 p-6 space-y-6">
       
@@ -14,13 +18,13 @@ export default function SellerDashboard() {
       {/* Mint Receivable */}
       <div className="bg-white p-6 rounded-2xl shadow">
         <h2 className="text-lg font-semibold mb-4">Mint Receivable NFT</h2>
-        <div className="text-gray-400"><MintReceivable /></div>
+        <div className="text-gray-400"><MintReceivable wallet={wallet} /></div>
       </div>
 
       {/* Lifecycle Table */}
       <div className="bg-white p-6 rounded-2xl shadow">
         <h2 className="text-lg font-semibold mb-4">Receivable Lifecycle</h2>
-        <p className="text-gray-400">[Table goes here]</p>
+        <ReceivableLifecycleTable wallet={wallet} />
       </div>
 
       {/* Credit Score */}
