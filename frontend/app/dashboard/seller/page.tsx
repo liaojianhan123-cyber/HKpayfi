@@ -1,4 +1,5 @@
 "use client";
+import MintReceivable from "@/components/forms/MintReceivable";
 
 export default function SellerDashboard() {
   return (
@@ -13,7 +14,7 @@ export default function SellerDashboard() {
       {/* Mint Receivable */}
       <div className="bg-white p-6 rounded-2xl shadow">
         <h2 className="text-lg font-semibold mb-4">Mint Receivable NFT</h2>
-        <p className="text-gray-400">[Form goes here]</p>
+        <div className="text-gray-400"><MintReceivable /></div>
       </div>
 
       {/* Lifecycle Table */}

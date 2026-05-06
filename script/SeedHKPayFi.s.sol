@@ -76,6 +76,7 @@ contract SeedHKPayFi is Script {
     function run() external returns (SeedResult memory result) {
         SeedConfig memory cfg = _loadConfig();
         _validateRoles(cfg);
+        _grantRoles(cfg);
 
         _mintTokens(cfg);
         _seedBorrowerApproval(cfg);
@@ -84,6 +85,22 @@ contract SeedHKPayFi is Script {
         _writeSeedArtifact(cfg, result);
         _logSummary(cfg, result);
     }
+
+    function _grantRoles(SeedConfig memory cfg) internal {
+        vm.startBroadcast(cfg.adminPrivateKey);
+
+        ReceivableNFT(cfg.receivableNFT).grantRole(
+            ReceivableNFT(cfg.receivableNFT).EVALUATOR_ROLE(),
+            cfg.evaluationAgent
+        );
+
+        ReceivableNFT(cfg.receivableNFT).grantRole(
+            ReceivableNFT(cfg.receivableNFT).FACILITY_ROLE(),
+            cfg.creditFacility
+        );
+
+        vm.stopBroadcast();
+    }    
 
     function _mintTokens(SeedConfig memory cfg) internal {
         if (!cfg.mintTestUsdc && !cfg.mintTestHkp) {
