@@ -2,20 +2,26 @@
 
 import useCreditScore from "@/hooks/useCreditScore";
 
-interface WalletProps {
-  wallet: {
-    account?: string;
-  };
-}
+type WalletProps = {
+  account: string | null;
+  connectWallet: () => Promise<void>;
+};
 
 export default function CreditScorePanel({
   wallet,
-}: WalletProps) {
-  const { profile, loading } = useCreditScore(wallet.account);
+}: {
+  wallet: WalletProps;
+}) {
+  const { account } = wallet;
 
-  if (!wallet.account) {
+  const {
+    profile,
+    loading,
+  } = useCreditScore(account || undefined);
+
+  if (!account) {
     return (
-      <p className="text-gray-400">
+      <p className="text-gray-500">
         Connect wallet to view credit score.
       </p>
     );
@@ -23,7 +29,7 @@ export default function CreditScorePanel({
 
   if (loading) {
     return (
-      <p className="text-gray-400">
+      <p className="text-gray-500">
         Loading credit profile...
       </p>
     );
@@ -31,7 +37,7 @@ export default function CreditScorePanel({
 
   if (!profile) {
     return (
-      <p className="text-gray-400">
+      <p className="text-gray-500">
         No credit profile found.
       </p>
     );

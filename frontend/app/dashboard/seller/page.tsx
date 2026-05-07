@@ -3,6 +3,7 @@ import MintReceivable from "@/components/forms/MintReceivable";
 import ReceivableLifecycleTable from "@/components/tables/ReceivableLifecycleTable";
 import useWallet from "@/hooks/useWallet";
 import CreditScorePanel from "@/components/cards/CreditScorePanel";
+import ApplyForCredit from "@/components/forms/ApplyForCredit";
 
 export default function SellerDashboard() {
   const wallet = useWallet();
@@ -38,7 +39,7 @@ export default function SellerDashboard() {
       {/* Apply for Credit */}
       <div className="bg-white p-6 rounded-2xl shadow">
         <h2 className="text-lg font-semibold mb-4">Apply for Credit</h2>
-        <p className="text-gray-400">[Limit, APR, Advance rate]</p>
+        <ApplyForCredit wallet={wallet} />
       </div>
 
       {/* Drawdown */}
