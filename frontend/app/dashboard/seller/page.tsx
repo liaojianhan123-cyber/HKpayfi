@@ -4,6 +4,7 @@ import ReceivableLifecycleTable from "@/components/tables/ReceivableLifecycleTab
 import useWallet from "@/hooks/useWallet";
 import CreditScorePanel from "@/components/cards/CreditScorePanel";
 import ApplyForCredit from "@/components/forms/ApplyForCredit";
+import DrawdownPanel from "@/components/forms/DrawdownPanel";
 
 export default function SellerDashboard() {
   const wallet = useWallet();
@@ -45,11 +46,7 @@ export default function SellerDashboard() {
       {/* Drawdown */}
       <div className="bg-white p-6 rounded-2xl shadow">
         <h2 className="text-lg font-semibold mb-4">Drawdown</h2>
-        <p className="text-gray-400">
-          Stake: 20% required <br />
-          HKP status: [Yes/No] <br />
-          APR discount / grace bonus
-        </p>
+        <DrawdownPanel wallet={wallet} />
       </div>
 
       {/* Repayment */}
