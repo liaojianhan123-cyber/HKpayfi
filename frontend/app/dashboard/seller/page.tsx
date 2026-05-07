@@ -2,6 +2,7 @@
 import MintReceivable from "@/components/forms/MintReceivable";
 import ReceivableLifecycleTable from "@/components/tables/ReceivableLifecycleTable";
 import useWallet from "@/hooks/useWallet";
+import CreditScorePanel from "@/components/cards/CreditScorePanel";
 
 export default function SellerDashboard() {
   const wallet = useWallet();
@@ -30,7 +31,7 @@ export default function SellerDashboard() {
       {/* Credit Score */}
       <div className="bg-white p-6 rounded-2xl shadow">
         <h2 className="text-lg font-semibold mb-4">Credit Score</h2>
-        <p className="text-gray-400">[Score + Status]</p>
+        <CreditScorePanel wallet={wallet} />
       </div>
 
       {/* ✅ ADD THIS (missing) */}
