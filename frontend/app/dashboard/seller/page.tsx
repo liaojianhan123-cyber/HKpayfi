@@ -5,6 +5,7 @@ import useWallet from "@/hooks/useWallet";
 import CreditScorePanel from "@/components/cards/CreditScorePanel";
 import ApplyForCredit from "@/components/forms/ApplyForCredit";
 import DrawdownPanel from "@/components/forms/DrawdownPanel";
+import RepaymentPanel from "@/components/forms/RepaymentPanel";
 
 export default function SellerDashboard() {
   const wallet = useWallet();
@@ -52,9 +53,7 @@ export default function SellerDashboard() {
       {/* Repayment */}
       <div className="bg-white p-6 rounded-2xl shadow">
         <h2 className="text-lg font-semibold mb-4">Repayment</h2>
-        <p className="text-gray-400">
-          Principal + Interest + Penalty
-        </p>
+        <RepaymentPanel wallet={wallet} />
       </div>
 
       {/* Default */}
