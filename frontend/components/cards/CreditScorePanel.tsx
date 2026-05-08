@@ -1,6 +1,6 @@
 "use client";
 
-import useCreditScore from "@/hooks/useCreditScore";
+import useCreditScore from "@/hooks/seller/useCreditScore";
 
 type WalletProps = {
   account: string | null;

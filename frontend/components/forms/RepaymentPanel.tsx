@@ -4,9 +4,9 @@ import { useState } from "react";
 
 import {
   useCreditFacility,
-} from "@/hooks/useCreditFacility";
+} from "@/hooks/seller/useCreditFacility";
 
-import useRepayment from "@/hooks/useRepayment";
+import useRepayment from "@/hooks/seller/useRepayment";
 
 type WalletProps = {
   account: string | null;

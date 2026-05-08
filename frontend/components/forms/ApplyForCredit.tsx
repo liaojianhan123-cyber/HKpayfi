@@ -2,7 +2,7 @@
 
 import { useState } from "react";
 
-import { useCreditFacility } from "@/hooks/useCreditFacility";
+import { useCreditFacility } from "@/hooks/seller/useCreditFacility";
 
 type WalletProps = {
   account: string | null;

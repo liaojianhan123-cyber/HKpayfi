@@ -2,10 +2,10 @@
 
 import {
   useCreditFacility,
-} from "@/hooks/useCreditFacility";
+} from "@/hooks/seller/useCreditFacility";
 
 import usePenaltyStatus
-  from "@/hooks/usePenaltyStatus";
+  from "@/hooks/seller/usePenaltyStatus";
 
 export default function DefaultPenaltyPanel() {
   const {

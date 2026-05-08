@@ -1,6 +1,6 @@
 "use client";
 
-import useHKPPerks from "@/hooks/useHKPPerks";
+import useHKPPerks from "@/hooks/seller/useHKPPerks";
 
 type Props = {
   account?: string | null;

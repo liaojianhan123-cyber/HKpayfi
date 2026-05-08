@@ -1,6 +1,6 @@
 "use client";
 
-import { useReceivables } from "@/hooks/useReceivables";
+import { useReceivables } from "@/hooks/seller/useReceivables";
 
 type WalletProps = {
   account: string | null;

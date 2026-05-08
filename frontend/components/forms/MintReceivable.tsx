@@ -1,7 +1,7 @@
 "use client";
 
 import { useState } from "react";
-import { useReceivableNFT } from "@/hooks/useReceivableNFT";
+import { useReceivableNFT } from "@/hooks/seller/useReceivableNFT";
 
 type WalletProps = {
   account: string | null;

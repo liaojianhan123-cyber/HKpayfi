@@ -2,10 +2,10 @@
 
 import { useState } from "react";
 
-import useHKPStatus from "@/hooks/useHKPStatus";
-import useDrawdown from "@/hooks/useDrawdown";
-import { useCreditFacility } from "@/hooks/useCreditFacility";
-import useBorrowerProfile from "@/hooks/useBorrowerProfile";
+import useHKPStatus from "@/hooks/protocol/useHKPStatus";
+import useDrawdown from "@/hooks/seller/useDrawdown";
+import { useCreditFacility } from "@/hooks/seller/useCreditFacility";
+import useBorrowerProfile from "@/hooks/seller/useBorrowerProfile";
 
 type WalletProps = {
   account: string | null;
