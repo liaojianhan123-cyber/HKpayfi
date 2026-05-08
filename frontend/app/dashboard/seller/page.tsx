@@ -6,6 +6,7 @@ import CreditScorePanel from "@/components/cards/CreditScorePanel";
 import ApplyForCredit from "@/components/forms/ApplyForCredit";
 import DrawdownPanel from "@/components/forms/DrawdownPanel";
 import RepaymentPanel from "@/components/forms/RepaymentPanel";
+import DefaultPenaltyPanel from "@/components/protocol/DefaultPenaltyPanel";
 
 export default function SellerDashboard() {
   const wallet = useWallet();
@@ -58,20 +59,13 @@ export default function SellerDashboard() {
 
       {/* Default */}
       <div className="bg-white p-6 rounded-2xl shadow border border-red-300">
+
         <h2 className="text-lg font-semibold mb-4 text-red-600">
           Default & Penalty
         </h2>
-        <p className="text-gray-400">
-          Normal → APR <br />
-          Late → 1.5× APR <br />
-          After grace → Default
-        </p>
 
-        <div className="mt-4 text-sm text-red-600">
-          <b>Loss Waterfall:</b><br />
-          1. Seller stake (slashed)<br />
-          2. Remaining → LP pool
-        </div>
+        <DefaultPenaltyPanel />
+
       </div>
 
       {/* HKP Perks */}
