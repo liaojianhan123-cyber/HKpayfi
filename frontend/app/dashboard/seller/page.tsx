@@ -7,6 +7,7 @@ import ApplyForCredit from "@/components/forms/ApplyForCredit";
 import DrawdownPanel from "@/components/forms/DrawdownPanel";
 import RepaymentPanel from "@/components/forms/RepaymentPanel";
 import DefaultPenaltyPanel from "@/components/protocol/DefaultPenaltyPanel";
+import HKPPerksPanel from "@/components/protocol/HKPPerksPanel";
 
 export default function SellerDashboard() {
   const wallet = useWallet();
@@ -71,12 +72,10 @@ export default function SellerDashboard() {
       {/* HKP Perks */}
       <div className="bg-white p-6 rounded-2xl shadow">
         <h2 className="text-lg font-semibold mb-4">HKP Token Perks</h2>
-        <p className="text-gray-400">
-          Balance + Holder status + APR discount + Grace bonus <br />
-          ⚠️ Snapshot at drawdown
-        </p>
+        <HKPPerksPanel
+          account={wallet.account}
+        />
       </div>
-
     </div>
   );
 }
