@@ -3,6 +3,7 @@
 import PoolOverviewPanel from "@/components/protocol/PoolOverviewPanel";
 import DepositLiquidityPanel from "@/components/forms/DepositLiquidityPanel";
 import WithdrawLiquidityPanel from "@/components/forms/WithdrawLiquidityPanel";
+import RiskPanel from "@/components/protocol/RiskPanel";
 
 export default function LPDashboard() {
   return (
@@ -50,6 +51,17 @@ export default function LPDashboard() {
         </h2>
 
         <WithdrawLiquidityPanel />
+
+      </div>
+
+      {/* Risk Panel */}
+      <div className="bg-white p-6 rounded-2xl shadow">
+
+        <h2 className="text-lg font-semibold mb-4">
+          Risk Metrics
+        </h2>
+
+        <RiskPanel />
 
       </div>
 
