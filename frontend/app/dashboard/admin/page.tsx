@@ -6,6 +6,9 @@ from "@/components/forms/UnderwritingAndApproveBorrowerPanel";
 import BlacklistViewTable
 from "@/components/tables/BlacklistViewTable";
 
+import ProtocolControlPanel
+from "@/components/protocol/ProtocolControlPanel";
+
 export default function AdminDashboard() {
 
   return (
@@ -78,6 +81,26 @@ export default function AdminDashboard() {
         </h2>
 
         <BlacklistViewTable />
+
+      </div>
+
+      {/* Protocol Control Panel */}
+      <div className="
+        bg-white
+        p-6
+        rounded-2xl
+        shadow
+      ">
+
+        <h2 className="
+          text-lg
+          font-semibold
+          mb-4
+        ">
+          Protocol Control Panel
+        </h2>
+
+        <ProtocolControlPanel />
 
       </div>
 
