@@ -3,8 +3,13 @@
 import UnderwritingAndApproveBorrowerPanel
 from "@/components/forms/UnderwritingAndApproveBorrowerPanel";
 
+import BlacklistViewTable
+from "@/components/tables/BlacklistViewTable";
+
 export default function AdminDashboard() {
+
   return (
+
     <div className="
       min-h-screen
       bg-gray-100
@@ -19,17 +24,23 @@ export default function AdminDashboard() {
         rounded-2xl
         shadow
       ">
-        <h1 className="text-2xl font-bold">
+
+        <h1 className="
+          text-2xl
+          font-bold
+        ">
           Admin Dashboard
         </h1>
 
         <p className="text-gray-500">
           Manage borrower approvals,
-          underwriting, and protocol controls
+          underwriting,
+          and protocol controls
         </p>
+
       </div>
 
-      {/* Underwriting & Borrower Approval */}
+      {/* Underwriting & Approval */}
       <div className="
         bg-white
         p-6
@@ -42,10 +53,31 @@ export default function AdminDashboard() {
           font-semibold
           mb-4
         ">
-          Underwriting & Borrower Approval
+          Underwriting &
+          Borrower Approval
         </h2>
 
         <UnderwritingAndApproveBorrowerPanel />
+
+      </div>
+
+      {/* Blacklist View */}
+      <div className="
+        bg-white
+        p-6
+        rounded-2xl
+        shadow
+      ">
+
+        <h2 className="
+          text-lg
+          font-semibold
+          mb-4
+        ">
+          Blacklisted Borrowers
+        </h2>
+
+        <BlacklistViewTable />
 
       </div>
 
