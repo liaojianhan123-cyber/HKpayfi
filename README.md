@@ -167,3 +167,45 @@ $ forge --help
 $ anvil --help
 $ cast --help
 ```
+
+## Frontend (Next.js)
+
+The project also includes a Next.js frontend located in the `frontend/` directory.
+
+### Install Dependencies
+
+```shell
+$ cd frontend
+$ npm install
+```
+
+### Run Frontend
+
+```shell
+$ npm run dev
+```
+
+Frontend will be available at:
+
+```text
+http://localhost:3000
+```
+
+Example routes:
+
+```text
+/login
+/dashboard/admin
+/dashboard/lp
+/dashboard/seller
+```
+
+### Frontend Stack
+
+- Next.js 16
+- React
+- TypeScript
+- Tailwind CSS
+- ethers.js
+- MetaMask wallet integration
+```
