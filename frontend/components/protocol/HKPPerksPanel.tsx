@@ -18,7 +18,7 @@ export default function HKPPerksPanel({
 
   if (!account) {
     return (
-      <p className="text-gray-500">
+      <p className="hk-muted">
         Connect wallet to view
         HKP perks
       </p>
@@ -27,7 +27,7 @@ export default function HKPPerksPanel({
 
   if (loading || !perks) {
     return (
-      <p className="text-gray-500">
+      <p className="hk-muted">
         Loading HKP perks...
       </p>
     );
@@ -37,9 +37,9 @@ export default function HKPPerksPanel({
     <div className="space-y-6">
 
       {/* Status */}
-      <div className="bg-blue-50 border border-blue-200 p-4 rounded-xl">
+      <div className="hk-panel-subtle">
 
-        <h3 className="font-semibold text-blue-700 mb-4">
+        <h3 className="mb-4 font-semibold text-white">
           HKP Holder Status
         </h3>
 
@@ -65,9 +65,9 @@ export default function HKPPerksPanel({
       </div>
 
       {/* Benefits */}
-      <div className="bg-gray-50 border p-4 rounded-xl">
+      <div className="hk-panel-subtle">
 
-        <h3 className="font-semibold mb-4">
+        <h3 className="mb-4 font-semibold text-white">
           Snapshot Benefits
         </h3>
 
@@ -99,10 +99,10 @@ export default function HKPPerksPanel({
       </div>
 
       {/* Warning */}
-      <div className="bg-yellow-50 border border-yellow-200 p-4 rounded-xl">
+      <div className="hk-warning">
 
-        <p className="text-sm text-yellow-800 leading-7">
-          ⚠️ HKP perks are
+        <p className="text-sm leading-7 text-neutral-300">
+          HKP perks are
           snapshotted at the
           time of first
           drawdown.

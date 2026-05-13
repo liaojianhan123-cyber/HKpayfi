@@ -60,7 +60,7 @@ export default function DrawdownPanel({
     return (
       <button
         onClick={connectWallet}
-        className="bg-black text-white px-4 py-2 rounded-lg"
+        className="hk-btn-primary"
       >
         Connect Wallet
       </button>
@@ -72,7 +72,7 @@ export default function DrawdownPanel({
 
       {/* Credit Line ID */}
       <div>
-        <label className="block mb-2 font-medium">
+        <label className="hk-label">
           Credit Line ID
         </label>
 
@@ -82,14 +82,14 @@ export default function DrawdownPanel({
           onChange={(e) =>
             setCreditLineId(e.target.value)
           }
-          className="w-full border rounded-lg p-3"
+          className="hk-input"
           placeholder="0"
         />
       </div>
 
       {/* Drawdown Amount */}
       <div>
-        <label className="block mb-2 font-medium">
+        <label className="hk-label">
           Drawdown Amount (USDC)
         </label>
 
@@ -99,7 +99,7 @@ export default function DrawdownPanel({
           onChange={(e) =>
             setAmount(e.target.value)
           }
-          className="w-full border rounded-lg p-3"
+          className="hk-input"
           placeholder="100"
         />
       </div>
@@ -107,9 +107,9 @@ export default function DrawdownPanel({
       {/* Credit Terms */}
       {profile &&
       !profileLoading && (
-        <div className="bg-gray-50 p-4 rounded-xl space-y-2">
+        <div className="hk-panel-subtle space-y-2">
 
-          <h3 className="font-semibold text-lg">
+          <h3 className="text-lg font-semibold text-white">
             Credit Terms
           </h3>
 
@@ -160,8 +160,8 @@ export default function DrawdownPanel({
     )}
 
       {/* Stake Requirement */}
-      <div className="bg-yellow-50 border border-yellow-200 p-4 rounded-xl">
-        <h3 className="font-semibold mb-2">
+      <div className="hk-warning">
+        <h3 className="mb-2 font-semibold text-white">
           Seller Stake Requirement
         </h3>
 
@@ -170,7 +170,7 @@ export default function DrawdownPanel({
           <b>{requiredStake} USDC</b>
         </p>
 
-        <p className="text-sm text-gray-500 mt-1">
+        <p className="mt-1 text-sm text-neutral-400">
           20% skin-in-the-game
           requirement
         </p>
@@ -178,9 +178,9 @@ export default function DrawdownPanel({
 
       {/* HKP Perks */}
       {!hkpLoading && status && (
-        <div className="bg-blue-50 border border-blue-200 p-4 rounded-xl">
+        <div className="hk-panel-subtle">
 
-          <h3 className="font-semibold mb-2">
+          <h3 className="mb-2 font-semibold text-white">
             HKP Perks
           </h3>
 
@@ -205,8 +205,8 @@ export default function DrawdownPanel({
               : "Standard only"}
           </p>
 
-          <p className="text-sm text-gray-500 mt-2">
-            ⚠️ HKP perks are
+          <p className="mt-2 text-sm text-neutral-400">
+            HKP perks are
             snapshotted at first
             drawdown
           </p>
@@ -214,7 +214,7 @@ export default function DrawdownPanel({
       )}
 
       {/* Actions */}
-      <div className="flex gap-4">
+      <div className="flex flex-col gap-3 sm:flex-row">
 
         <button
           onClick={() =>
@@ -225,7 +225,7 @@ export default function DrawdownPanel({
           disabled={
             loading || !amount
           }
-          className="bg-black text-white px-4 py-3 rounded-xl"
+          className="hk-btn-secondary"
         >
           Approve Stake
         </button>
@@ -242,7 +242,7 @@ export default function DrawdownPanel({
             !creditLineId ||
             !amount
           }
-          className="bg-blue-600 text-white px-4 py-3 rounded-xl"
+          className="hk-btn-primary"
         >
           Execute Drawdown
         </button>
@@ -250,19 +250,19 @@ export default function DrawdownPanel({
 
       {/* Status */}
       {loading && (
-        <p className="text-gray-500">
+        <p className="hk-muted">
           Processing transaction...
         </p>
       )}
 
       {txHash && (
-        <p className="text-green-600 break-all">
+        <p className="hk-success break-all">
           Success: {txHash}
         </p>
       )}
 
       {error && (
-        <p className="text-red-600 break-all">
+        <p className="hk-error break-all">
           {error}
         </p>
       )}

@@ -42,9 +42,9 @@ export default function DefaultPenaltyPanel() {
     <div className="space-y-6">
 
       {/* Penalty Status */}
-      <div className="bg-red-50 border border-red-200 p-4 rounded-xl">
+      <div className="hk-panel-subtle">
 
-        <h3 className="font-semibold text-red-700 mb-4">
+        <h3 className="mb-4 font-semibold text-white">
           Default & Penalty Status
         </h3>
 
@@ -52,17 +52,17 @@ export default function DefaultPenaltyPanel() {
 
           <p>
             Standard APR:{" "}
-            <b>{baseApr}%</b>
+            <b className="text-white">{baseApr}%</b>
           </p>
 
           <p>
             Penalty APR:{" "}
-            <b>{penaltyApr}%</b>
+            <b className="text-white">{penaltyApr}%</b>
           </p>
 
           <p>
             Status:{" "}
-            <b>
+            <b className="text-white">
               {isDefaulted
                 ? "Defaulted"
                 : isOverdue
@@ -82,7 +82,7 @@ export default function DefaultPenaltyPanel() {
             )}
 
           {isDefaulted && (
-            <p className="text-red-600 font-medium">
+            <p className="font-medium text-red-200">
               Default Triggered
             </p>
           )}
@@ -91,34 +91,34 @@ export default function DefaultPenaltyPanel() {
       </div>
 
       {/* Loss Waterfall */}
-      <div className="bg-red-50 border border-red-200 p-4 rounded-xl">
+      <div className="hk-panel-subtle">
 
-        <h3 className="font-semibold text-red-700">
+        <h3 className="font-semibold text-white">
           Loss Waterfall
         </h3>
 
         <div className="mt-4 space-y-3">
 
-          <div className="bg-white p-3 rounded-lg border">
+          <div className="rounded-xl border border-white/10 bg-white/[0.04] p-3">
 
-            <p className="font-medium">
+            <p className="font-medium text-white">
               1. Seller Stake
             </p>
 
-            <p className="text-red-600">
+            <p className="text-neutral-300">
               Slashed First:{" "}
               {sellerStake} USDC
             </p>
 
           </div>
 
-          <div className="bg-white p-3 rounded-lg border">
+          <div className="rounded-xl border border-white/10 bg-white/[0.04] p-3">
 
-            <p className="font-medium">
+            <p className="font-medium text-white">
               2. LP Pool Exposure
             </p>
 
-            <p className="text-orange-600">
+            <p className="text-neutral-300">
               Remaining Loss:{" "}
               {lpLossExposure} USDC
             </p>
@@ -129,13 +129,13 @@ export default function DefaultPenaltyPanel() {
       </div>
 
       {/* Protocol Explanation */}
-      <div className="bg-gray-50 border p-4 rounded-xl">
+      <div className="hk-warning">
 
-        <h3 className="font-semibold mb-2">
+        <h3 className="mb-2 font-semibold text-white">
           Protocol Protection
         </h3>
 
-        <p className="text-gray-600 text-sm leading-7">
+        <p className="text-sm leading-7 text-neutral-300">
           HKPayFi uses a
           seller-first loss
           absorption mechanism.
@@ -150,7 +150,7 @@ export default function DefaultPenaltyPanel() {
       </div>
 
       {loading && (
-        <p className="text-gray-500">
+        <p className="hk-muted">
           Loading penalty
           status...
         </p>

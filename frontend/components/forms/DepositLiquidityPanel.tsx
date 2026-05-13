@@ -23,7 +23,7 @@ export default function DepositLiquidityPanel() {
 
       {/* Input */}
       <div>
-        <label className="block text-sm font-medium mb-2">
+        <label className="hk-label">
           Deposit Amount (USDC)
         </label>
 
@@ -36,7 +36,7 @@ export default function DepositLiquidityPanel() {
               e.target.value
             )
           }
-          className="w-full border rounded-xl p-3"
+          className="hk-input"
         />
       </div>
 
@@ -48,15 +48,7 @@ export default function DepositLiquidityPanel() {
         disabled={
           loading || !amount
         }
-        className="
-          bg-blue-600
-          hover:bg-blue-700
-          text-white
-          px-4
-          py-3
-          rounded-xl
-          disabled:opacity-50
-        "
+        className="hk-btn-primary w-full sm:w-auto"
       >
         {loading
           ? "Depositing..."
@@ -66,14 +58,7 @@ export default function DepositLiquidityPanel() {
       {/* Success */}
       {success && (
         <div
-          className="
-            bg-green-50
-            border
-            border-green-200
-            text-green-700
-            p-3
-            rounded-xl
-          "
+          className="hk-success"
         >
           {success}
         </div>
@@ -82,14 +67,7 @@ export default function DepositLiquidityPanel() {
       {/* Error */}
       {error && (
         <div
-          className="
-            bg-red-50
-            border
-            border-red-200
-            text-red-700
-            p-3
-            rounded-xl
-          "
+          className="hk-error"
         >
           {error}
         </div>
@@ -97,14 +75,7 @@ export default function DepositLiquidityPanel() {
 
       {/* Explanation */}
       <div
-        className="
-          bg-gray-50
-          border
-          p-4
-          rounded-xl
-          text-sm
-          text-gray-600
-        "
+        className="hk-warning"
       >
         Depositing USDC into the
         ERC-4626 liquidity pool

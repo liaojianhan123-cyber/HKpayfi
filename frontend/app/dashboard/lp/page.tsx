@@ -7,64 +7,57 @@ import RiskPanel from "@/components/protocol/RiskPanel";
 
 export default function LPDashboard() {
   return (
-    <div className="min-h-screen bg-gray-100 p-6 space-y-6">
-
+    <div className="hk-page hk-fade-in">
       {/* Header */}
-      <div className="bg-white p-6 rounded-2xl shadow">
-        <h1 className="text-2xl font-bold">
-          LP Dashboard
-        </h1>
+      <div className="hk-hero">
+        <div className="relative flex flex-col gap-6 lg:flex-row lg:items-end lg:justify-between">
+          <div className="max-w-3xl space-y-3">
+            <div className="hk-pill">Liquidity Provider Console</div>
+            <h1 className="hk-title">LP Dashboard</h1>
+            <p className="hk-muted max-w-2xl">
+              Manage liquidity positions, monitor pool performance, and review
+              risk exposure from one streamlined protocol view.
+            </p>
+          </div>
 
-        <p className="text-gray-500">
-          Manage liquidity positions and
-          monitor pool performance
-        </p>
+          <div className="grid grid-cols-2 gap-3 sm:min-w-80">
+            <div className="hk-stat-card">
+              <p className="hk-stat-label">Capital</p>
+              <p className="mt-2 text-lg font-semibold text-white">USDC Pool</p>
+            </div>
+            <div className="hk-stat-card">
+              <p className="hk-stat-label">Vault</p>
+              <p className="mt-2 text-lg font-semibold text-white">hkLP</p>
+            </div>
+          </div>
+        </div>
       </div>
 
       {/* Pool Overview */}
-      <div className="bg-white p-6 rounded-2xl shadow">
-
-        <h2 className="text-lg font-semibold mb-4">
-          Pool Overview
-        </h2>
-
+      <div className="hk-panel">
+        <h2 className="hk-section-title">Pool Overview</h2>
         <PoolOverviewPanel />
-
       </div>
 
-      {/* Deposit Liquidity */}
-      <div className="bg-white p-6 rounded-2xl shadow">
+      <div className="grid grid-cols-1 gap-6 xl:grid-cols-2">
+        {/* Deposit Liquidity */}
+        <div className="hk-panel">
+          <h2 className="hk-section-title">Deposit Liquidity</h2>
+          <DepositLiquidityPanel />
+        </div>
 
-        <h2 className="text-lg font-semibold mb-4">
-          Deposit Liquidity
-        </h2>
-
-        <DepositLiquidityPanel />
-
-      </div>
-      
-      {/* Withdraw Liquidity */}
-      <div className="bg-white p-6 rounded-2xl shadow">
-
-        <h2 className="text-lg font-semibold mb-4">
-          Withdraw Liquidity
-        </h2>
-
-        <WithdrawLiquidityPanel />
-
+        {/* Withdraw Liquidity */}
+        <div className="hk-panel">
+          <h2 className="hk-section-title">Withdraw Liquidity</h2>
+          <WithdrawLiquidityPanel />
+        </div>
       </div>
 
       {/* Risk Panel */}
-      <div className="bg-white p-6 rounded-2xl shadow">
-
-        <h2 className="text-lg font-semibold mb-4">
-          Risk Metrics
-        </h2>
-
+      <div className="hk-panel">
+        <h2 className="hk-section-title">Risk Metrics</h2>
         <RiskPanel />
-
       </div>
-
     </div>
   );
 }

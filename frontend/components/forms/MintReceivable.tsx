@@ -53,14 +53,14 @@ export default function MintReceivable({wallet,}: {wallet: WalletProps;}) {
   };
 
   return (
-    <div className="bg-white p-6 rounded-2xl shadow">
-      <h2 className="text-lg font-semibold mb-4">Mint Receivable NFT</h2>
+    <div className="space-y-4">
+      <h2 className="sr-only">Mint Receivable NFT</h2>
 
       <div className="space-y-3">
         {!account && (
           <button
             onClick={connectWallet}
-            className="w-full bg-black text-white py-2 rounded"
+            className="hk-btn-primary w-full"
           >
             Connect Wallet
           </button>
@@ -69,7 +69,7 @@ export default function MintReceivable({wallet,}: {wallet: WalletProps;}) {
         <input
           type="text"
           placeholder="Payer address"
-          className="w-full border p-2 rounded"
+          className="hk-input"
           value={payer}
           onChange={(e) => setPayer(e.target.value)}
         />
@@ -77,14 +77,14 @@ export default function MintReceivable({wallet,}: {wallet: WalletProps;}) {
         <input
           type="number"
           placeholder="Face amount (USDC)"
-          className="w-full border p-2 rounded"
+          className="hk-input"
           value={amount}
           onChange={(e) => setAmount(e.target.value)}
         />
 
         <input
           type="date"
-          className="w-full border p-2 rounded"
+          className="hk-input"
           value={dueDate}
           onChange={(e) => setDueDate(e.target.value)}
         />
@@ -92,7 +92,7 @@ export default function MintReceivable({wallet,}: {wallet: WalletProps;}) {
         <input
           type="text"
           placeholder="Invoice Reference ID"
-          className="w-full border p-2 rounded"
+          className="hk-input"
           value={invoiceId}
           onChange={(e) => setInvoiceId(e.target.value)}
         />
@@ -100,19 +100,19 @@ export default function MintReceivable({wallet,}: {wallet: WalletProps;}) {
         <button
           onClick={handleMint}
           disabled={loading}
-          className="w-full bg-blue-600 text-white py-2 rounded"
+          className="hk-btn-primary w-full"
         >
           {loading ? "Minting..." : "Mint Receivable"}
         </button>
 
         {txHash && (
-          <p className="text-green-600 text-sm">
+          <p className="hk-success break-all">
             Success: {txHash.slice(0, 10)}...
           </p>
         )}
 
         {error && (
-          <p className="text-red-500 text-sm">{error}</p>
+          <p className="hk-error break-all">{error}</p>
         )}
       </div>
     </div>

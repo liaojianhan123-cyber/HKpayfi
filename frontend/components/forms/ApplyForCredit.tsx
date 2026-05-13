@@ -57,7 +57,7 @@ export default function ApplyForCredit({
     return (
       <button
         onClick={connectWallet}
-        className="w-full bg-black text-white py-3 rounded-lg"
+        className="hk-btn-primary w-full"
       >
         Connect Wallet
       </button>
@@ -72,45 +72,45 @@ export default function ApplyForCredit({
         placeholder="Receivable NFT Token ID"
         value={tokenId}
         onChange={(e) => setTokenId(e.target.value)}
-        className="w-full border rounded-lg p-3"
+        className="hk-input"
       />
 
       <button
         onClick={handleApply}
         disabled={loading}
-        className="w-full bg-blue-600 text-white py-3 rounded-lg"
+        className="hk-btn-primary w-full"
       >
         {loading ? "Applying..." : "Apply For Credit"}
       </button>
 
-      <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
+      <div className="grid grid-cols-1 gap-4 md:grid-cols-3">
 
-        <div className="bg-gray-50 rounded-xl p-4 border">
-          <p className="text-sm text-gray-500">
+        <div className="hk-stat-card">
+          <p className="hk-stat-label">
             Credit Limit
           </p>
 
-          <p className="text-xl font-semibold mt-1">
+          <p className="mt-1 text-xl font-semibold text-white">
             {creditLimit}
           </p>
         </div>
 
-        <div className="bg-gray-50 rounded-xl p-4 border">
-          <p className="text-sm text-gray-500">
+        <div className="hk-stat-card">
+          <p className="hk-stat-label">
             APR
           </p>
 
-          <p className="text-xl font-semibold mt-1">
+          <p className="mt-1 text-xl font-semibold text-white">
             {apr}
           </p>
         </div>
 
-        <div className="bg-gray-50 rounded-xl p-4 border">
-          <p className="text-sm text-gray-500">
+        <div className="hk-stat-card">
+          <p className="hk-stat-label">
             Advance Rate
           </p>
 
-          <p className="text-xl font-semibold mt-1">
+          <p className="mt-1 text-xl font-semibold text-white">
             {advanceRate}
           </p>
         </div>
@@ -118,13 +118,13 @@ export default function ApplyForCredit({
       </div>
 
       {txHash && (
-        <p className="text-green-600 text-sm break-all">
+        <p className="hk-success break-all">
           Success: {txHash}
         </p>
       )}
 
       {error && (
-        <p className="text-red-600 text-sm">
+        <p className="hk-error">
           {error}
         </p>
       )}

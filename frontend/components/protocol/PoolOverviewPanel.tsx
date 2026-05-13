@@ -17,64 +17,64 @@ export default function PoolOverviewPanel() {
     <div className="space-y-6">
 
       {/* Overview Grid */}
-      <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+      <div className="grid grid-cols-1 gap-4 md:grid-cols-2">
 
         {/* Total Assets */}
-        <div className="bg-blue-50 border border-blue-200 p-4 rounded-xl">
-          <h3 className="text-sm text-blue-700 font-medium">
+        <div className="hk-stat-card">
+          <h3 className="hk-stat-label">
             Total Assets
           </h3>
 
-          <p className="text-2xl font-bold mt-2">
+          <p className="hk-stat-value">
             {totalAssets} USDC
           </p>
 
-          <p className="text-xs text-gray-500 mt-1">
+          <p className="mt-1 text-xs text-neutral-500">
             Cash + outstanding loans
           </p>
         </div>
 
         {/* Available Liquidity */}
-        <div className="bg-green-50 border border-green-200 p-4 rounded-xl">
-          <h3 className="text-sm text-green-700 font-medium">
+        <div className="hk-stat-card">
+          <h3 className="hk-stat-label">
             Available Liquidity
           </h3>
 
-          <p className="text-2xl font-bold mt-2">
+          <p className="hk-stat-value">
             {availableLiquidity} USDC
           </p>
 
-          <p className="text-xs text-gray-500 mt-1">
+          <p className="mt-1 text-xs text-neutral-500">
             Withdrawable pool cash
           </p>
         </div>
 
         {/* Outstanding Loans */}
-        <div className="bg-yellow-50 border border-yellow-200 p-4 rounded-xl">
-          <h3 className="text-sm text-yellow-700 font-medium">
+        <div className="hk-stat-card">
+          <h3 className="hk-stat-label">
             Outstanding Loans
           </h3>
 
-          <p className="text-2xl font-bold mt-2">
+          <p className="hk-stat-value">
             {totalBorrowed} USDC
           </p>
 
-          <p className="text-xs text-gray-500 mt-1">
+          <p className="mt-1 text-xs text-neutral-500">
             Active borrower debt
           </p>
         </div>
 
         {/* Yield Earned */}
-        <div className="bg-purple-50 border border-purple-200 p-4 rounded-xl">
-          <h3 className="text-sm text-purple-700 font-medium">
+        <div className="hk-stat-card">
+          <h3 className="hk-stat-label">
             Yield Earned
           </h3>
 
-          <p className="text-2xl font-bold mt-2">
+          <p className="hk-stat-value">
             {totalInterestEarned} USDC
           </p>
 
-          <p className="text-xs text-gray-500 mt-1">
+          <p className="mt-1 text-xs text-neutral-500">
             Lifetime LP yield
           </p>
         </div>
@@ -82,17 +82,17 @@ export default function PoolOverviewPanel() {
       </div>
 
       {/* Losses */}
-      <div className="bg-red-50 border border-red-200 p-4 rounded-xl">
+      <div className="rounded-2xl border border-white/10 bg-black/35 p-4">
 
-        <h3 className="text-red-700 font-semibold">
+        <h3 className="font-semibold text-white">
           Pool Losses
         </h3>
 
-        <p className="text-2xl font-bold mt-3">
+        <p className="mt-3 text-3xl font-semibold text-white">
           {totalLosses} USDC
         </p>
 
-        <p className="text-sm text-gray-600 mt-2">
+        <p className="hk-muted mt-2">
           Losses socialized across LPs
           after seller stake absorption.
         </p>
@@ -100,7 +100,7 @@ export default function PoolOverviewPanel() {
       </div>
 
       {loading && (
-        <p className="text-gray-500">
+        <p className="hk-muted">
           Loading pool overview...
         </p>
       )}
