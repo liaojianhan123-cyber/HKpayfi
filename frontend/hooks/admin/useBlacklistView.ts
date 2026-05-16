@@ -54,16 +54,7 @@ export default function useBlacklistView() {
             provider
           );
 
-        /*
-          Temporary borrower registry
-          for MVP/demo purposes
-        */
-
-        const borrowerAddresses = [
-          "0x1111111111111111111111111111111111111111",
-          "0x2222222222222222222222222222222222222222",
-          "0x3333333333333333333333333333333333333333",
-        ];
+        const borrowerAddresses = await evaluationAgent.getAllBorrowers();
 
         const blacklistResults:
           BlacklistedBorrower[] = [];

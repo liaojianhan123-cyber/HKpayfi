@@ -28,6 +28,8 @@ contract EvaluationAgent is AccessControl {
     ReceivableNFT public immutable receivableNFT;
 
     mapping(address => BorrowerProfile) public profiles;
+    address[] public borrowerRegistry;
+    mapping(address => bool) public isRegisteredBorrower;
 
     event BorrowerApproved(address indexed borrower, uint256 maxCreditLimit, uint256 interestRate, uint256 advanceRate);
     event BorrowerRevoked(address indexed borrower);
@@ -66,6 +68,11 @@ contract EvaluationAgent is AccessControl {
         // Initialize credit score for new borrowers
         if (isFirstApproval) {
             profile.creditScore = 50; // Start at mid-range (0-100 scale)
+        }
+
+        if (!isRegisteredBorrower[_borrower]) {
+            borrowerRegistry.push(_borrower);
+            isRegisteredBorrower[_borrower] = true;
         }
 
         emit BorrowerApproved(_borrower, _maxCreditLimit, _interestRate, _advanceRate);
@@ -141,4 +148,9 @@ contract EvaluationAgent is AccessControl {
     function getProfile(address _borrower) external view returns (BorrowerProfile memory) {
         return profiles[_borrower];
     }
+
+    function getAllBorrowers() external view returns (address[] memory) {
+        return borrowerRegistry;
+    }
+    
 }
