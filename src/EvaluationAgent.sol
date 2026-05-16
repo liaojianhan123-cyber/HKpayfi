@@ -152,5 +152,4 @@ contract EvaluationAgent is AccessControl {
     function getAllBorrowers() external view returns (address[] memory) {
         return borrowerRegistry;
     }
-    
 }
