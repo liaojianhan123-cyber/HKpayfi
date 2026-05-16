@@ -29,7 +29,7 @@ export default function UnderwritingAndApproveBorrowerPanel() {
 
       {/* Borrower Address */}
       <div>
-        <label className="block text-sm font-medium mb-2">
+        <label className="hk-label">
           Borrower Address
         </label>
 
@@ -40,13 +40,13 @@ export default function UnderwritingAndApproveBorrowerPanel() {
             setBorrower(e.target.value)
           }
           placeholder="0x..."
-          className="w-full border rounded-xl p-3"
+          className="hk-input"
         />
       </div>
 
       {/* Credit Limit */}
       <div>
-        <label className="block text-sm font-medium mb-2">
+        <label className="hk-label">
           Credit Limit (USDC)
         </label>
 
@@ -57,13 +57,13 @@ export default function UnderwritingAndApproveBorrowerPanel() {
             setCreditLimit(e.target.value)
           }
           placeholder="50000"
-          className="w-full border rounded-xl p-3"
+          className="hk-input"
         />
       </div>
 
       {/* APR */}
       <div>
-        <label className="block text-sm font-medium mb-2">
+        <label className="hk-label">
           APR (basis points)
         </label>
 
@@ -74,17 +74,17 @@ export default function UnderwritingAndApproveBorrowerPanel() {
             setInterestRate(e.target.value)
           }
           placeholder="1500"
-          className="w-full border rounded-xl p-3"
+          className="hk-input"
         />
 
-        <p className="text-sm text-gray-500 mt-1">
+        <p className="mt-1 text-sm text-neutral-500">
           Example: 1500 = 15%
         </p>
       </div>
 
       {/* Advance Rate */}
       <div>
-        <label className="block text-sm font-medium mb-2">
+        <label className="hk-label">
           Advance Rate (basis points)
         </label>
 
@@ -95,16 +95,16 @@ export default function UnderwritingAndApproveBorrowerPanel() {
             setAdvanceRate(e.target.value)
           }
           placeholder="9000"
-          className="w-full border rounded-xl p-3"
+          className="hk-input"
         />
 
-        <p className="text-sm text-gray-500 mt-1">
+        <p className="mt-1 text-sm text-neutral-500">
           Example: 9000 = 90%
         </p>
       </div>
 
       {/* Action Buttons */}
-      <div className="flex gap-4">
+      <div className="flex flex-col gap-3 sm:flex-row">
 
         <button
           onClick={() =>
@@ -116,15 +116,7 @@ export default function UnderwritingAndApproveBorrowerPanel() {
             )
           }
           disabled={loading}
-          className="
-            bg-green-600
-            hover:bg-green-700
-            text-white
-            px-6
-            py-3
-            rounded-xl
-            font-medium
-          "
+          className="hk-btn-primary"
         >
           Approve Borrower
         </button>
@@ -134,15 +126,7 @@ export default function UnderwritingAndApproveBorrowerPanel() {
             revokeBorrower(borrower)
           }
           disabled={loading}
-          className="
-            bg-red-600
-            hover:bg-red-700
-            text-white
-            px-6
-            py-3
-            rounded-xl
-            font-medium
-          "
+          className="hk-btn-danger"
         >
           Revoke Borrower
         </button>

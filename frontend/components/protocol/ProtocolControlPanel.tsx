@@ -12,7 +12,7 @@ export default function ProtocolControlPanel() {
 
   if (loading) {
     return (
-      <p className="text-gray-500">
+      <p className="hk-muted">
         Loading protocol config...
       </p>
     );
@@ -20,7 +20,7 @@ export default function ProtocolControlPanel() {
 
   if (!config) {
     return (
-      <p className="text-red-500">
+      <p className="hk-error">
         Failed to load protocol config.
       </p>
     );
@@ -37,22 +37,19 @@ export default function ProtocolControlPanel() {
 
       {/* Pause Status */}
       <div className="
-        border
-        rounded-xl
-        p-4
-        bg-gray-50
+        hk-stat-card
       ">
 
         <p className="
-          text-sm
-          text-gray-500
+          hk-stat-label
         ">
           Pause Status
         </p>
 
         <p className="
           text-xl
-          font-bold
+          font-semibold
+          text-white
           mt-2
         ">
           {
@@ -66,22 +63,19 @@ export default function ProtocolControlPanel() {
 
       {/* Max Advance Rate */}
       <div className="
-        border
-        rounded-xl
-        p-4
-        bg-gray-50
+        hk-stat-card
       ">
 
         <p className="
-          text-sm
-          text-gray-500
+          hk-stat-label
         ">
           Max Advance Rate
         </p>
 
         <p className="
           text-xl
-          font-bold
+          font-semibold
+          text-white
           mt-2
         ">
           {config.maxAdvanceRate / 100}%
@@ -91,22 +85,19 @@ export default function ProtocolControlPanel() {
 
       {/* Min APR */}
       <div className="
-        border
-        rounded-xl
-        p-4
-        bg-gray-50
+        hk-stat-card
       ">
 
         <p className="
-          text-sm
-          text-gray-500
+          hk-stat-label
         ">
           Minimum APR
         </p>
 
         <p className="
           text-xl
-          font-bold
+          font-semibold
+          text-white
           mt-2
         ">
           {config.minInterestRate / 100}%
@@ -116,22 +107,19 @@ export default function ProtocolControlPanel() {
 
       {/* Grace Period */}
       <div className="
-        border
-        rounded-xl
-        p-4
-        bg-gray-50
+        hk-stat-card
       ">
 
         <p className="
-          text-sm
-          text-gray-500
+          hk-stat-label
         ">
           Grace Period
         </p>
 
         <p className="
           text-xl
-          font-bold
+          font-semibold
+          text-white
           mt-2
         ">
           {config.gracePeriod} seconds

@@ -46,7 +46,7 @@ export default function RepaymentPanel({
     return (
       <button
         onClick={connectWallet}
-        className="bg-black text-white px-4 py-2 rounded-lg"
+        className="hk-btn-primary"
       >
         Connect Wallet
       </button>
@@ -90,7 +90,7 @@ export default function RepaymentPanel({
 
       {/* Credit Line ID */}
       <div>
-        <label className="block mb-2 font-medium">
+        <label className="hk-label">
           Credit Line ID
         </label>
 
@@ -102,14 +102,14 @@ export default function RepaymentPanel({
               e.target.value
             )
           }
-          className="w-full border rounded-lg p-3"
+          className="hk-input"
           placeholder="0"
         />
       </div>
 
       {/* Amount */}
       <div>
-        <label className="block mb-2 font-medium">
+        <label className="hk-label">
           Repayment Amount (USDC)
         </label>
 
@@ -121,16 +121,16 @@ export default function RepaymentPanel({
               e.target.value
             )
           }
-          className="w-full border rounded-lg p-3"
+          className="hk-input"
           placeholder="100"
         />
       </div>
 
       {/* Repayment Breakdown */}
       {creditLine && (
-        <div className="bg-gray-50 p-4 rounded-xl space-y-2">
+        <div className="hk-panel-subtle space-y-2">
 
-          <h3 className="font-semibold text-lg">
+          <h3 className="text-lg font-semibold text-white">
             Repayment Breakdown
           </h3>
 
@@ -167,7 +167,7 @@ export default function RepaymentPanel({
       )}
 
       {/* Actions */}
-      <div className="flex gap-4">
+      <div className="flex flex-col gap-3 sm:flex-row">
 
         <button
           onClick={() =>
@@ -178,7 +178,7 @@ export default function RepaymentPanel({
           disabled={
             loading || !amount
           }
-          className="bg-black text-white px-4 py-3 rounded-xl"
+          className="hk-btn-secondary"
         >
           Approve USDC
         </button>
@@ -197,7 +197,7 @@ export default function RepaymentPanel({
             !creditLineId ||
             !amount
           }
-          className="bg-blue-600 text-white px-4 py-3 rounded-xl"
+          className="hk-btn-primary"
         >
           Repay
         </button>
@@ -205,19 +205,19 @@ export default function RepaymentPanel({
 
       {/* Status */}
       {loading && (
-        <p className="text-gray-500">
+        <p className="hk-muted">
           Processing transaction...
         </p>
       )}
 
       {txHash && (
-        <p className="text-green-600 break-all">
+        <p className="hk-success break-all">
           Success: {txHash}
         </p>
       )}
 
       {error && (
-        <p className="text-red-600 break-all">
+        <p className="hk-error break-all">
           {error}
         </p>
       )}

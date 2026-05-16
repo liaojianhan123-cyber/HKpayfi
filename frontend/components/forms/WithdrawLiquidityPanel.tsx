@@ -39,7 +39,7 @@ export default function WithdrawLiquidityPanel() {
 
         {/* Amount */}
         <div>
-          <label className="block text-sm font-medium mb-2">
+          <label className="hk-label">
             Withdraw Amount (USDC)
           </label>
 
@@ -52,13 +52,7 @@ export default function WithdrawLiquidityPanel() {
             onChange={(e) =>
               setAmount(e.target.value)
             }
-            className="
-              w-full
-              border
-              rounded-xl
-              p-4
-              text-lg
-            "
+            className="hk-input"
           />
         </div>
 
@@ -66,15 +60,7 @@ export default function WithdrawLiquidityPanel() {
         <button
           type="submit"
           disabled={loading}
-          className="
-            bg-red-600
-            hover:bg-red-700
-            text-white
-            px-6
-            py-3
-            rounded-xl
-            disabled:opacity-50
-          "
+          className="hk-btn-secondary w-full sm:w-auto"
         >
           {loading
             ? "Processing..."
@@ -86,14 +72,7 @@ export default function WithdrawLiquidityPanel() {
       {/* Success */}
       {success && (
         <div
-          className="
-            p-4
-            rounded-xl
-            bg-green-100
-            text-green-700
-            border
-            border-green-300
-          "
+          className="hk-success"
         >
           {success}
         </div>
@@ -102,14 +81,7 @@ export default function WithdrawLiquidityPanel() {
       {/* Error */}
       {error && (
         <div
-          className="
-            p-4
-            rounded-xl
-            bg-red-100
-            text-red-700
-            border
-            border-red-300
-          "
+          className="hk-error"
         >
           {error}
         </div>
@@ -117,13 +89,7 @@ export default function WithdrawLiquidityPanel() {
 
       {/* UX Note */}
       <div
-        className="
-          bg-gray-50
-          border
-          rounded-xl
-          p-4
-          text-gray-600
-        "
+        className="hk-warning"
       >
         Some liquidity may be locked in
         active loans. Only available pool

@@ -1,3 +1,149 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+@layer base {
+  :root {
+    color-scheme: dark;
+  }
+
+  html {
+    background: #030303;
+  }
+
+  body {
+    min-height: 100vh;
+    background:
+      radial-gradient(circle at top left, rgba(255, 255, 255, 0.1), transparent 32rem),
+      radial-gradient(circle at 85% 15%, rgba(148, 163, 184, 0.1), transparent 28rem),
+      linear-gradient(135deg, #020202 0%, #090909 48%, #111111 100%);
+    color: #f8fafc;
+  }
+}
+
+@layer components {
+  .hk-page {
+    @apply min-h-screen space-y-6 px-4 py-5 text-white sm:px-6 lg:px-8;
+  }
+
+  .hk-hero {
+    @apply relative overflow-hidden rounded-[2rem] border border-white/10 bg-white/[0.04] p-6 shadow-2xl shadow-black/60 backdrop-blur-xl sm:p-8;
+  }
+
+  .hk-hero::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    pointer-events: none;
+    background-image:
+      linear-gradient(rgba(255, 255, 255, 0.045) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(255, 255, 255, 0.045) 1px, transparent 1px);
+    background-size: 44px 44px;
+    mask-image: linear-gradient(to bottom, black, transparent 78%);
+  }
+
+  .hk-panel {
+    @apply rounded-2xl border border-white/10 bg-white/[0.045] p-5 shadow-xl shadow-black/30 backdrop-blur-xl transition duration-300 hover:-translate-y-0.5 hover:border-white/20 hover:bg-white/[0.07] sm:p-6;
+  }
+
+  .hk-panel-subtle {
+    @apply rounded-2xl border border-white/10 bg-black/30 p-4 shadow-lg shadow-black/20;
+  }
+
+  .hk-panel-danger {
+    @apply rounded-2xl border border-red-400/25 bg-red-500/[0.06] p-5 shadow-xl shadow-black/30 backdrop-blur-xl sm:p-6;
+  }
+
+  .hk-title {
+    @apply text-2xl font-semibold tracking-normal text-white sm:text-3xl;
+  }
+
+  .hk-section-title {
+    @apply mb-4 text-base font-semibold tracking-normal text-white sm:text-lg;
+  }
+
+  .hk-muted {
+    @apply text-sm leading-6 text-neutral-400;
+  }
+
+  .hk-label {
+    @apply mb-2 block text-sm font-medium text-neutral-300;
+  }
+
+  .hk-input {
+    @apply w-full rounded-xl border border-white/10 bg-black/40 px-4 py-3 text-white shadow-inner shadow-black/30 outline-none transition placeholder:text-neutral-600 focus:border-white/40 focus:ring-2 focus:ring-white/10;
+  }
+
+  .hk-btn-primary {
+    @apply inline-flex items-center justify-center rounded-xl bg-white px-5 py-3 font-semibold text-black shadow-lg shadow-white/10 transition duration-200 hover:-translate-y-0.5 hover:bg-neutral-200 focus:outline-none focus:ring-2 focus:ring-white/30 disabled:cursor-not-allowed disabled:bg-neutral-700 disabled:text-neutral-400 disabled:shadow-none disabled:hover:translate-y-0;
+  }
+
+  .hk-btn-secondary {
+    @apply inline-flex items-center justify-center rounded-xl border border-white/15 bg-white/[0.04] px-5 py-3 font-semibold text-white transition duration-200 hover:-translate-y-0.5 hover:border-white/30 hover:bg-white/[0.08] focus:outline-none focus:ring-2 focus:ring-white/20 disabled:cursor-not-allowed disabled:opacity-50 disabled:hover:translate-y-0;
+  }
+
+  .hk-btn-danger {
+    @apply inline-flex items-center justify-center rounded-xl border border-red-400/30 bg-red-500/10 px-5 py-3 font-semibold text-red-100 transition duration-200 hover:-translate-y-0.5 hover:border-red-300/50 hover:bg-red-500/15 focus:outline-none focus:ring-2 focus:ring-red-300/20 disabled:cursor-not-allowed disabled:opacity-50 disabled:hover:translate-y-0;
+  }
+
+  .hk-stat-card {
+    @apply rounded-2xl border border-white/10 bg-white/[0.045] p-4 transition duration-300 hover:-translate-y-0.5 hover:border-white/20 hover:bg-white/[0.07];
+  }
+
+  .hk-stat-label {
+    @apply text-sm font-medium text-neutral-400;
+  }
+
+  .hk-stat-value {
+    @apply mt-2 text-2xl font-semibold text-white sm:text-3xl;
+  }
+
+  .hk-pill {
+    @apply inline-flex items-center rounded-full border border-white/10 bg-white/[0.06] px-3 py-1 text-sm font-medium text-neutral-100;
+  }
+
+  .hk-success {
+    @apply rounded-xl border border-emerald-400/25 bg-emerald-500/10 p-3 text-sm text-emerald-200;
+  }
+
+  .hk-error {
+    @apply rounded-xl border border-red-400/25 bg-red-500/10 p-3 text-sm text-red-200;
+  }
+
+  .hk-warning {
+    @apply rounded-xl border border-white/10 bg-white/[0.04] p-4 text-sm leading-6 text-neutral-300;
+  }
+
+  .hk-table-wrap {
+    @apply overflow-x-auto rounded-2xl border border-white/10 bg-black/20;
+  }
+
+  .hk-table {
+    @apply w-full border-collapse text-sm text-neutral-200;
+  }
+
+  .hk-th {
+    @apply border-b border-white/10 bg-white/[0.04] p-4 text-left text-xs font-semibold uppercase tracking-wide text-neutral-400;
+  }
+
+  .hk-td {
+    @apply border-b border-white/5 p-4;
+  }
+}
+
+@layer utilities {
+  .hk-fade-in {
+    animation: hk-fade-in 520ms ease-out both;
+  }
+
+  @keyframes hk-fade-in {
+    from {
+      opacity: 0;
+      transform: translateY(10px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+}

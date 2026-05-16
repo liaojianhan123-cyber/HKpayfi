@@ -12,7 +12,7 @@ export default function BlacklistViewTable() {
 
   if (loading) {
     return (
-      <p className="text-gray-500">
+      <p className="hk-muted">
         Loading blacklist...
       </p>
     );
@@ -22,13 +22,8 @@ export default function BlacklistViewTable() {
     blacklistedBorrowers.length === 0
   ) {
     return (
-      <div className="
-        bg-gray-50
-        border
-        rounded-xl
-        p-6
-      ">
-        <p className="text-gray-500">
+      <div className="hk-panel-subtle">
+        <p className="hk-muted">
           No blacklisted borrowers found.
         </p>
       </div>
@@ -36,32 +31,28 @@ export default function BlacklistViewTable() {
   }
 
   return (
-    <div className="overflow-x-auto">
+    <div className="hk-table-wrap">
 
       <table className="
-        w-full
-        border-collapse
+        hk-table
       ">
 
         <thead>
 
-          <tr className="
-            border-b
-            text-left
-          ">
-            <th className="p-4">
+          <tr>
+            <th className="hk-th">
               Borrower
             </th>
 
-            <th className="p-4">
+            <th className="hk-th">
               Defaults
             </th>
 
-            <th className="p-4">
+            <th className="hk-th">
               Credit Score
             </th>
 
-            <th className="p-4">
+            <th className="hk-th">
               Status
             </th>
           </tr>
@@ -76,32 +67,34 @@ export default function BlacklistViewTable() {
             <tr
               key={borrower.address}
               className="
-                border-b
-                hover:bg-gray-50
+                transition
+                hover:bg-white/[0.03]
               "
             >
 
               <td className="
-                p-4
+                hk-td
                 font-mono
                 text-sm
               ">
                 {borrower.address}
               </td>
 
-              <td className="p-4">
+              <td className="hk-td">
                 {borrower.defaults}
               </td>
 
-              <td className="p-4">
+              <td className="hk-td">
                 {borrower.creditScore}
               </td>
 
-              <td className="p-4">
+              <td className="hk-td">
 
                 <span className="
-                  bg-red-100
-                  text-red-700
+                  border
+                  border-red-400/25
+                  bg-red-500/10
+                  text-red-100
                   px-3
                   py-1
                   rounded-full

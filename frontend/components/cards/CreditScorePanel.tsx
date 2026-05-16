@@ -21,7 +21,7 @@ export default function CreditScorePanel({
 
   if (!account) {
     return (
-      <p className="text-gray-500">
+      <p className="hk-muted">
         Connect wallet to view credit score.
       </p>
     );
@@ -29,7 +29,7 @@ export default function CreditScorePanel({
 
   if (loading) {
     return (
-      <p className="text-gray-500">
+      <p className="hk-muted">
         Loading credit profile...
       </p>
     );
@@ -37,7 +37,7 @@ export default function CreditScorePanel({
 
   if (!profile) {
     return (
-      <p className="text-gray-500">
+      <p className="hk-muted">
         No credit profile found.
       </p>
     );
@@ -47,28 +47,28 @@ export default function CreditScorePanel({
     <div className="space-y-4">
 
       <div>
-        <p className="text-sm text-gray-500">
+        <p className="hk-stat-label">
           Credit Score
         </p>
 
-        <h3 className="text-4xl font-bold">
+        <h3 className="text-5xl font-semibold text-white">
           {profile.creditScore}
         </h3>
       </div>
 
       <div>
-        <p className="text-sm text-gray-500 mb-1">
+        <p className="mb-2 text-sm text-neutral-400">
           Status
         </p>
 
-        <div className="inline-flex px-4 py-2 rounded-full bg-gray-100">
+        <div className="hk-pill">
           <span className="font-medium">
             {profile.status}
           </span>
         </div>
       </div>
 
-      <div className="text-sm text-gray-500">
+      <div className="hk-warning">
         Rules:
         <br />
         Start at 50
@@ -77,7 +77,7 @@ export default function CreditScorePanel({
         <br />
         -20 late repayment
         <br />
-        Default → score reset to 0 + blacklist
+        Default resets score to 0 + blacklist
       </div>
 
     </div>
