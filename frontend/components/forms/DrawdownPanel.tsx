@@ -78,6 +78,8 @@ export default function DrawdownPanel({
 
         <input
           type="number"
+          min="0"
+          step="1"
           value={creditLineId}
           onChange={(e) =>
             setCreditLineId(e.target.value)

@@ -60,16 +60,16 @@ export default function RepaymentPanel({
         ) / 1e6
       : 0;
 
+  // Real accrued interest pulled from chain (already includes the 1.5x
+  // penalty bump if the loan is overdue). Falls back to 0 if not loaded.
   const interest =
-    creditLine
-      ? (
-          principal *
-          (Number(
-            creditLine.interestRate
-          ) /
-            100) /
-          100
-        ).toFixed(2)
+    creditLine && creditLine.accruedInterest
+      ? (Number(creditLine.accruedInterest) / 1e6).toFixed(2)
+      : "0";
+
+  const totalOwed =
+    creditLine && creditLine.totalOwed
+      ? (Number(creditLine.totalOwed) / 1e6).toFixed(2)
       : "0";
 
   const isOverdue =
@@ -77,13 +77,6 @@ export default function RepaymentPanel({
       ? Math.floor(currentTime) >
         Number(creditLine.dueDate)
       : false;
-
-  const penalty =
-    isOverdue
-      ? (
-          Number(interest) * 1.5
-        ).toFixed(2)
-      : "0";
 
   return (
     <div className="space-y-6">
@@ -96,6 +89,8 @@ export default function RepaymentPanel({
 
         <input
           type="number"
+          min="0"
+          step="1"
           value={creditLineId}
           onChange={(e) =>
             setCreditLineId(
@@ -142,16 +137,19 @@ export default function RepaymentPanel({
           </p>
 
           <p>
-            Interest:{" "}
+            Accrued Interest:{" "}
             <b>
               {interest} USDC
             </b>
+            <span className="ml-2 text-xs text-neutral-500">
+              {isOverdue ? "(includes 1.5x penalty)" : "(live, time-based)"}
+            </span>
           </p>
 
           <p>
-            Penalty:{" "}
-            <b>
-              {penalty} USDC
+            Total Owed Now:{" "}
+            <b className="text-emerald-300">
+              {totalOwed} USDC
             </b>
           </p>
 

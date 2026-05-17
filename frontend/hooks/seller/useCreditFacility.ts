@@ -18,6 +18,10 @@ export interface CreditLine {
   stakeAmount: string;
   hasTokenDiscount: boolean;
   state: number;
+  /** Real on-chain accrued interest (already includes penalty if overdue). USDC 6dp raw. */
+  accruedInterest?: string;
+  /** Total amount owed right now = drawn + accruedInterest. USDC 6dp raw. */
+  totalOwed?: string;
 }
 
 export function useCreditFacility(
@@ -57,7 +61,11 @@ export function useCreditFacility(
   };
 
   useEffect(() => {
+    // Guard against negative or non-numeric IDs — ethers fails to encode
+    // negative values into uint256, throwing "value out-of-bounds".
     if (!creditLineId) return;
+    const idNum = Number(creditLineId);
+    if (!Number.isFinite(idNum) || idNum < 0) return;
 
     const loadCreditLine = async () => {
       try {
@@ -81,6 +89,22 @@ export function useCreditFacility(
             creditLineId
           );
 
+        // Fetch real-time accrued interest + total owed from chain.
+        // These reflect the actual amount the borrower must repay NOW
+        // (not the maximum lifetime interest).
+        let accruedInterest = "0";
+        let totalOwed = "0";
+        try {
+          const [acc, owed] = await Promise.all([
+            contract.calculateInterest(creditLineId),
+            contract.totalOwed(creditLineId),
+          ]);
+          accruedInterest = acc.toString();
+          totalOwed = owed.toString();
+        } catch {
+          // calculateInterest / totalOwed may revert for non-active lines — leave 0
+        }
+
         setCreditLine({
           borrower: line.borrower,
           receivableTokenId:
@@ -103,6 +127,8 @@ export function useCreditFacility(
             line.hasTokenDiscount,
           state:
             Number(line.state),
+          accruedInterest,
+          totalOwed,
         });
       } catch (err) {
         console.error(err);
