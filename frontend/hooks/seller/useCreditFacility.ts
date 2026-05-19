@@ -53,7 +53,7 @@ export function useCreditFacility(
     );
 
     const tx =
-      await contract.apply(tokenId);
+      await contract.applyForCredit(tokenId);
 
     await tx.wait();
 
